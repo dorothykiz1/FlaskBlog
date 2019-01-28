@@ -1,0 +1,16 @@
+<!-- inherits from layout.html -->
+{% extends "layout.html" %}
+<!-- wrap in a block content -->
+{% block content %}
+    {% for post in posts %}
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">By {{post.author}} on {{post.date_posted}}</div>
+        <div class="card-body">
+          <h4 class="card-title">{{post.title}}</h4>
+          <p class="card-text">{{post.content}}</p>
+        </div>
+      </div>
+
+        
+    {% endfor%}
+{%endblock content%}
