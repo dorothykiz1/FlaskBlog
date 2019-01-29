@@ -3,7 +3,7 @@
 <!-- wrap in a block content -->
 {% block content %}
     {% for post in posts %}
-    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
         <div class="card-header">By {{post.author}} on {{post.date_posted}}</div>
         <div class="card-body">
           <h4 class="card-title">{{post.title}}</h4>
