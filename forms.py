@@ -6,10 +6,15 @@ from wtforms.validators import DataRequired ,Length,Email,EqualTo
 # class RegistrationForm-child inherits from Flaskform parent class
 
 class RegistrationForm(FlaskForm):
-    Username =StringField('username',
-                            validators=[DataRequired(), Length(min=2,max=20)])
-     
-#    no making it empty n btn 2-20 characters -add validators
+    Username =StringField('username', validators=[DataRequired(), Length(min=2,max=20)])
+
+     """ 
+        no making it empty n btn 2-20 
+        characters -add
+        validators
+        
+    """
+
     Email =StringField('email',validators=[DataRequired(),Email()])
     Password= PasswordField('password',validators=[DataRequired()])
     confirm_password= PasswordField('confirm_password',
