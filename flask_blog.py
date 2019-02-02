@@ -9,13 +9,15 @@ posts =[
     {
         'author':' Dorothy Kabarozi',
         'title':'Dealing with coding and backache',
-        'content':'first post content',
+        'content':'You can  never code while sleeping probably you will hurt yo back but sitting for long hours is also not that easy',
         'date_posted':'Jan 28th,2019'
     },
     {
         'author':' Dorothy Kabarozi',
         'title':'Moms can code too',
-        'content':'second post content',
+        'content':""" Distractions from our little ones,their cries their smiles always let us
+                     leave what we are doing and attend to them.Being a coding mom is equally
+                      not easy but it is doable """,
         'date_posted':'Jan 30th,2019'
     }
 ]
