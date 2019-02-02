@@ -5,17 +5,20 @@ from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '79d64c304c964d793be61e7fc7696a9b'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 # sqlite /// specify the relative path 
 # secret key for this app
 # config values in our application app.config
 db = SQLAlchemy(app)
 
 
-# user model
 class User(db.Model):
+    """
+        User model
+
+    """
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20),unique=True, nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(20), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(60), nullable=False)
@@ -27,11 +30,16 @@ class User(db.Model):
         return f"User('{self.username}','{self.email}','{self.image_file}')"
 
 class Post(db.Model):
-    id = db.Column(db.Integer,primary_key=True)
-    title =db.Column(db.String(100),unique=True,nullable=False)
-    date_posted =db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
-    content=db.Column(db.Text,nullable=False)
-    user_id =db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
+    """
+
+        Post class
+
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), unique=True, nullable=False)
+    date_posted = db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
+    content= db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f"Post('{self.title }','{self. date_posted}')"
@@ -55,16 +63,24 @@ posts =[
  
 @app.route('/')
 @app.route('/home')
+#home function that displays the home page
 def home():
+
     return render_template('home.html',posts=posts)
 
 @app.route('/about')
 def about():
-    return render_template('about.html',title='About page')
+    """
+         about function that displays the about page
+    """
+    return render_template('about.html', title='About page')
     #  in this case if no methods the form does not submit
 
-@app.route('/register',methods=["GET","POST"])
+@app.route('/register', methods=["GET", "POST"])
 def register():
+     """
+         register function that displays the registration page
+    """
     form = RegistrationForm()
 
     if form.validate_on_submit():
