@@ -1,80 +1,66 @@
-
 {% extends "layout.html" %}
 {% block content %}
-<div class="row">
-        <div class="col-sm-8 content-section"> 
+<div class="container">
+    <div class="content-section">
         <form action="" method="post">
             {{form.hidden_tag()}}
             <!-- adds protection -->
             <fieldset class="form-group">
-                <legend class="border_bottom mb-4">Join Today</legend>
+                <legend class="border_bottom mb-4">Log In</legend>
                 
                 <div class="form-group">
                     {{form.Email.label(class='form-control-label')}}
-                    {{form.Email(class='form-control form-control-lg')}}
-                </div>
+                    {%if form.Email.errors %}
+                        {{form.Email.label(class='form-control-label form-control-lg is invalid')}}
+                            <div class="invalid_feedback">
+                                {%for error in form.Email.errors%}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                        {{form.Email(class='form-control form-control-lg')}}
 
+                    {% endif %}
+                </div>
                 <div class="form-group">
                     {{form.Password.label(class='form-control-label')}}
-                    {{form.Password(class='form-control form-control-lg')}}
-                </div>
+                    {%if form.Password.errors %}
+                        {{form.Password.label(class='form-control-label form-control-lg is invalid')}}
+                            <div class="invalid_feedback">
+                                {%for error in form.Password.errors%}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                                {{form.Password(class='form-control form-control-lg')}}
 
-                <div class="form-group">
-                    {{form.Remember.label(class='form-control-label')}}
-                    {{form.Remember(class='form-control form-control-lg')}}
+                    {% endif %}
                 </div>
-                
+                <div class="form-check">
+                  {{form.Remember(class="form-control-input")}}
+                  {{form.Remember.label(class="form-control-label")}}
+
+
+                </div>
             </fieldset>
             <div class="form-group">
                 {{form.Submit(class="btn btn-outline-info")}}
             </div>
+            <small class="text-muted  ml-2">
+              <a href="#">Forgot Password</a>
 
-            <div class="border-top pt-3">
-                    <small>
-                        Have no account? <a class="ml-2" href="{{url_for('register')}}">SignUP</a>
-                    </small>
-            </div>
+            </small>
+
         </form>
-        
-                <div class="col-sm-4">
-                        
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                          <span class="text-muted">Our Side Bar</span>
-                          <span class="badge badge-secondary badge-pill">3</span>
-                        </h4>
-                        <ul class="list-group mb-3">
-                          <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                              <h6 class="my-0">Liked Comments</h6>
-                              <small class="text-muted">Brief description</small>
-                            </div>
-                            <span class="text-muted">12</span>
-                          </li>
-                          <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                              <h6 class="my-0">Calendars</h6>
-                              <small class="text-muted">Brief description</small>
-                            </div>
-                            <span class="text-muted">8</span>
-                          </li>
-                          <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                              <h6 class="my-0">Announcements</h6>
-                              <small class="text-muted">Brief description</small>
-                            </div>
-                            <span class="text-muted">5</span>
-                          </li>
-                          
-                        </ul>
-                  
-        </div>
 
     </div>
-    
+    <div class="border-top pt-3">
+        <small>
+            Need An Account <a class="ml-2" href="{{url_for('register')}}">Sign Up</a>
+        </small>
 
+    </div>
 </div>
-
 {% endblock content %}
-    
     
  
