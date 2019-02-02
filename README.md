@@ -1,2 +1,2 @@
 ## Flask Blog
-This is a Blog that i created using Flask and Python
+This blog is a short description of me and what i do and love .Happy reading
