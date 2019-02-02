@@ -17,66 +17,60 @@
 <body>
     <!-- block content for the unique content -->
     <div class="container">
-        <div>
-                    <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link active text-success" data-toggle="tab" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-success" data-toggle="tab" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link text-success" data-toggle="tab" href="#profile">Profile</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="dropdown1">Comments</a>
-                        <a class="dropdown-item" href="dropdown2">Notifications</a>
-                        <a class="dropdown-item" href="dropdown3">Followers</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="dropdown4">Likes</a>
-                      </div>
-                    </li>
-                </ul>
-                  <div class>
-                  <ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Sign up</a></li>
-                  </ul>
-                </div>
-                  <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade show active" id="home">
-                           <p> <small>Welcome to my blog</small></p>
-                    </div>
-                    <div class="tab-pane fade" id="about">
-                        <p>Am a software Developer who is passionate about software development,cloud computing and data science.
-                            My fun fact is i love plants and all their dirty-iness,yes am passionate about plants and i have a couple of them already at my house.Plants give me joy watching them grow and bud.
-                            That a side am a mom to alittle human being called KEZA.My heart aches for her. 
 
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="Profile">
-                            <p>
-                                Am a software Developer who is passionate about software development,cloud computing and data science.
-                                
-                            </p>
-                    </div>
-                    <div class="tab-pane fade" id="dropdown1">
-                        <p>3</p>
-                    </div>
-                    <div class="tab-pane fade" id="dropdown2">
-                        <p>2</p>
-                    </div>
-                    <div class="tab-pane fade" id="dropdown3">
-                            <p>2</p>
-                    </div>
-                    <div class="tab-pane fade" id="dropdown4">
-                                <p>1</p>
-                    </div>
-                  </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Les Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarColor02">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('about')}}">About</a>
+                </li>
+               
+              </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('register')}}">Signup</a>
+                  </li>
+                  <!-- use the application methods -->
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                  </li>
+            </ul>
+
+            </div>
+          </nav>
+        </div>
+        <div class="container">
+            <!-- for alerts -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if  messages %}
+            {%for category,message in messages %}
+                <div class="alert alert-dismissible alert-{{category}}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{message}}</strong> 
+                </div>
+
+            {%endfor%}
+            {% endif %}
+            
+            
+            
+            {%endwith%}
             {% block content%} {%endblock%}
-    </div>
+        </div>
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
