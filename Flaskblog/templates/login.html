@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="content-section">
+        <form action="" method="post">
+            {{form.hidden_tag()}}
+            <!-- adds protection -->
+            <fieldset class="form-group">
+                <legend class="border_bottom mb-4">Log In</legend>
+                
+                <div class="form-group">
+                    {{form.Email.label(class='form-control-label')}}
+                    {%if form.Email.errors %}
+                        {{form.Email.label(class='form-control-label form-control-lg is invalid')}}
+                            <div class="invalid_feedback">
+                                {%for error in form.Email.errors%}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                        {{form.Email(class='form-control form-control-lg')}}
+
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{form.Password.label(class='form-control-label')}}
+                    {%if form.Password.errors %}
+                        {{form.Password.label(class='form-control-label form-control-lg is invalid')}}
+                            <div class="invalid_feedback">
+                                {%for error in form.Password.errors%}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                                {{form.Password(class='form-control form-control-lg')}}
+
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                  {{form.Remember(class="form-control-input")}}
+                  {{form.Remember.label(class="form-control-label")}}
+
+
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{form.Submit(class="btn btn-outline-info")}}
+            </div>
+            <small class="text-muted  ml-2">
+              <a href="#">Forgot Password</a>
+
+            </small>
+
+        </form>
+
+    </div>
+    <div class="border-top pt-3">
+        <small>
+            Need An Account <a class="ml-2" href="{{url_for('register')}}">Sign Up</a>
+        </small>
+
+    </div>
+</div>
+{% endblock content %}
+    
+ 
