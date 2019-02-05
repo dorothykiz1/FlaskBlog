@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from Flaskblog.forms import RegistrationForm, LoginForm
 from Flaskblog import app,db,bcrypt
 from Flaskblog.models import User , Post
-
+from flask_login import login_user,current_user,logout_user,login_required
 
 
 posts =[
@@ -42,6 +42,9 @@ def register():
     """
          register function that displays the registration page
     """
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
     form = RegistrationForm()
     if form.validate_on_submit():
         # one time alert use flash
@@ -57,13 +60,31 @@ def register():
 @app.route('/login',methods=["GET","POST"])
 def login():
     form = LoginForm()
+    # checking if current user is already logged in redirected
 
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+        
     if form.validate_on_submit():
-        if form.Email.data == 'kizdorothy@gmail.com' and form.Password.data =='password':
-            flash('You have been logged in', 'success')
+        user = User.query.filter_by(email = form.Email.data).first()
+
+        if user and bcrypt.check_password_hash(user.password,form.Password.data):
+            login_user(user,remember=form.Remember.data)
             return redirect(url_for('home'))
         else:
-            flash('Login unsuccessful.please try again', 'danger')
+            flash('You have an invalid password or email', 'danger')
+
         return render_template('login.html', title='login', form=form)
 
     return render_template('login.html', title='login', form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+@app.route('/account')
+@login_required
+def account():
+        return render_template('account.html', title='Account')
+ 
