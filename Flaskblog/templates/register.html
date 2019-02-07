@@ -8,44 +8,44 @@
             <fieldset class="form-group">
                 <legend class="border_bottom mb-4">Join Today</legend>
                 <div class="form-group">
-                    {{form.Username.label(class='form-control-label')}}
-                    {% if form.Username.errors %}
-                        {{form.Username.label(class='form-control-label form-control-lg is invalid')}}
+                    {{form.username.label(class='form-control-label')}}
+                    {% if form.username.errors %}
+                        {{form.username.label(class='form-control-label form-control-lg is invalid')}}
                             <div class="invalid_feedback">
                                 {%for error in form.username.errors%}
                                 <span>{{error}}</span>
                                 {% endfor %}
                             </div>
                     {% else %}
-                        {{form.Username(class='form-control form-control-lg')}}
+                        {{form.username(class='form-control form-control-lg')}}
 
                     {%endif%}
                 </div>
                 <div class="form-group">
-                    {{form.Email.label(class='form-control-label')}}
-                    {%if form.Email.errors %}
-                        {{form.Email.label(class='form-control-label form-control-lg is invalid')}}
+                    {{form.email.label(class='form-control-label')}}
+                    {%if form.email.errors %}
+                        {{form.email.label(class='form-control-label form-control-lg is invalid')}}
                             <div class="invalid_feedback">
-                                {%for error in form.Email.errors%}
+                                {%for error in form.email.errors%}
                                 <span>{{error}}</span>
                                 {% endfor %}
                             </div>
                     {% else %}
-                        {{form.Email(class='form-control form-control-lg')}}
+                        {{form.email(class='form-control form-control-lg')}}
 
                     {% endif %}
                 </div>
                 <div class="form-group">
-                    {{form.Password.label(class='form-control-label')}}
-                    {%if form.Password.errors %}
-                        {{form.Password.label(class='form-control-label form-control-lg is invalid')}}
+                    {{form.password.label(class='form-control-label')}}
+                    {%if form.password.errors %}
+                        {{form.password.label(class='form-control-label form-control-lg is invalid')}}
                             <div class="invalid_feedback">
-                                {%for error in form.Password.errors%}
+                                {%for error in form.password.errors%}
                                 <span>{{error}}</span>
                                 {% endfor %}
                             </div>
                     {% else %}
-                                {{form.Password(class='form-control form-control-lg')}}
+                                {{form.password(class='form-control form-control-lg')}}
 
                     {% endif %}
                 </div>
@@ -66,7 +66,7 @@
                 
             </fieldset>
             <div class="form-group">
-                {{form.Submit(class="btn btn-outline-info")}}
+                {{form.submit(class="btn btn-outline-info")}}
             </div>
 
         </form>

@@ -9,42 +9,42 @@
                 <legend class="border_bottom mb-4">Log In</legend>
                 
                 <div class="form-group">
-                    {{form.Email.label(class='form-control-label')}}
-                    {%if form.Email.errors %}
-                        {{form.Email.label(class='form-control-label form-control-lg is invalid')}}
+                    {{form.email.label(class='form-control-label')}}
+                    {%if form.email.errors %}
+                        {{form.email.label(class='form-control-label form-control-lg is invalid')}}
                             <div class="invalid_feedback">
-                                {%for error in form.Email.errors%}
+                                {%for error in form.email.errors%}
                                 <span>{{error}}</span>
                                 {% endfor %}
                             </div>
                     {% else %}
-                        {{form.Email(class='form-control form-control-lg')}}
+                        {{form.email(class='form-control form-control-lg')}}
 
                     {% endif %}
                 </div>
                 <div class="form-group">
-                    {{form.Password.label(class='form-control-label')}}
-                    {%if form.Password.errors %}
-                        {{form.Password.label(class='form-control-label form-control-lg is invalid')}}
+                    {{form.password.label(class='form-control-label')}}
+                    {%if form.password.errors %}
+                        {{form.password.label(class='form-control-label form-control-lg is invalid')}}
                             <div class="invalid_feedback">
-                                {%for error in form.Password.errors%}
+                                {%for error in form.password.errors%}
                                 <span>{{error}}</span>
                                 {% endfor %}
                             </div>
                     {% else %}
-                                {{form.Password(class='form-control form-control-lg')}}
+                        {{form.password(class='form-control form-control-lg')}}
 
                     {% endif %}
                 </div>
                 <div class="form-check">
-                  {{form.Remember(class="form-control-input")}}
-                  {{form.Remember.label(class="form-control-label")}}
+                  {{form.remember(class="form-control-input")}}
+                  {{form.remember.label(class="form-control-label")}}
 
 
                 </div>
             </fieldset>
             <div class="form-group">
-                {{form.Submit(class="btn btn-outline-info")}}
+                {{form.submit(class="btn btn-outline-info")}}
             </div>
             <small class="text-muted  ml-2">
               <a href="#">Forgot Password</a>

@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField ,PasswordField,SubmitField,BooleanField,ValidationError
 from wtforms.validators import DataRequired ,Length,Email,EqualTo
 from Flaskblog.models import User
@@ -8,29 +9,47 @@ from Flaskblog.models import User
 
 class RegistrationForm(FlaskForm):
     
-    Username = StringField('username',validators= [DataRequired(), Length(min=2, max=20)])
-    Email = StringField('email',validators= [DataRequired(), Email()])
-    Password= PasswordField('password',validators= [DataRequired()])
-    confirm_password= PasswordField('confirm_password', validators= [DataRequired(), EqualTo('Password')])
-    Submit = SubmitField('Signup')
+    username = StringField('Username',validators= [DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email',validators= [DataRequired(), Email()])
+    password= PasswordField('Password',validators= [DataRequired()])
+    confirm_password= PasswordField('Confirm_password', validators= [DataRequired(), EqualTo('Password')])
+    submit = SubmitField('Signup')
 #function for validating whether or not the username is already there
     def validate_username(self,username):
-        user = User.query.filter_by(username = Username.data).first()#first value
+        user = User.query.filter_by(username = username.data).first()#first value
         if user:
             raise ValidationError('Username taken please choose another one')
     
     def validate_email(self,email):
-        user = User.query.filter_by(email = Email.data).first()#first value
+        user = User.query.filter_by(email = email.data).first()#first value
         if user:
             raise ValidationError('Email taken please choose another one')
-    
-
+            
 class LoginForm(FlaskForm):
-        # username =StringField('username',
-    #                        validators=[DataRequired(), Length(min=2,max=20)])
-    # no making it empty n btn 2-20 characters -add validators
-    Email = StringField('email', validators = [DataRequired(), Email()])
-    Password = PasswordField('password', validators = [DataRequired()])
-    Remember = BooleanField('remember_me')
-    Submit = SubmitField('Login')
+
+     #making it empty n btn 2-20 characters -add validators
+    email = StringField('Email', validators = [DataRequired(), Email()])
+    password= PasswordField('Password',validators= [DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
+class UpdateAccountForm(FlaskForm):
+     
+    username = StringField('Username',validators= [DataRequired(), 
+                            Length(min=2, max=20)])
+    email = StringField('Email',validators= [DataRequired(), Email()])
+    submit = SubmitField('Update')
+    #function for validating whether or not the username is already there
+    def validate_username(self,username):
+        if username.data != current_user.username:
+            user = User.query.filter_by(username = username.data).first()#first value
+            if user:
+                raise ValidationError('Username taken please choose another one')
+        
+    def validate_email(self,email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email = email.data).first()#first value
+            if user:
+                raise ValidationError('Email taken please choose another one')
+        
     

@@ -14,5 +14,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-
+# login function name for our route login
+login_manager.login_message_category ='info'
+#shows alert with info color
 from Flaskblog import routes
