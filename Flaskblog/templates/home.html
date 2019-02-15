@@ -3,7 +3,7 @@
 <!-- wrap in a block content -->
 {% block content %}
     {% for post in posts.items %}
-    <div class="container">
+    
     <article class ="media content-section">
         <img class="rounded-circle"  src="{{url_for('static',filename='profile_pics/' + post.author.image_file)  }}" width="140" height="140">
         <div class ="media-body">
@@ -17,7 +17,7 @@
         </div>
       </article>
         
-      </div>
+      
     {% endfor %}
     {% for page_num in posts.iter_pages(left_edge =1,right_edge=1,left_current=1,right_current=2) %}
       {%if page_num%}

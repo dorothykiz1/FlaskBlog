@@ -3,7 +3,36 @@
 <!-- wrap in a block content -->
 <!-- no looping since its a single post -->
 {% block content %}
-    <div class="container">
+<div class=" container col-md-8">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+        <a href="{{url_for('user_posts',username=post.author.username )}}">
+          <strong class="d-inline-block mb-2 text-success">{{post.author.username}}</strong></a><span class="badge badge-success">Follow</span>
+        <!-- seen when the user is a current user -->
+        <span><i title="like" class="far fa-thumbs-up"></i> 
+
+        {% if post.author == current_user %}
+            <div>
+                <a href="{{url_for('update',post_id=post.id) }}" ><i class="far fa-edit"></i></a>
+                <!-- modal is a pop up -->
+                <!-- <button type="button" data-toggle ="modal" data-target="#deletemodal"  class ="btn btn-danger btn-sm m-1"> -->
+                  <i data-toggle ="modal" data-target="#deletemodal"  class="fas fa-trash"></i>
+                <!-- </button> -->
+            </div>
+        {% endif %}
+      </span>
+        <h3 class="mb-0">{{post.title}}</h3>
+        <div class="mb-1 text-muted">{{post.date_posted.strftime('%Y-%m-%d')}}</div>
+        <p class="mb-auto">{{post.content}}</p>
+        <a href="#" class="stretched-link">Continue reading</a>
+        <hr>
+      </div>
+      <div class="col-auto d-none d-lg-block">
+        <img class="rounded-circle"  src="{{url_for('static',filename='profile_pics/' + post.author.image_file)  }}" width="140" height="140">
+
+      </div>
+
+    <!-- <div class="container">
     <article class ="media content-section">
         <img class="rounded-circle"  src="{{url_for('static',filename='profile_pics/' + post.author.image_file)  }}" width="140" height="140">
         <div class ="media-body">
@@ -11,21 +40,21 @@
             <a text-success class= "mr-2" href="{{url_for('user_posts',username=post.author.username )}}" >{{post.author.username}}</a>
             <small class="text-muted">{{post.date_posted.strftime('%Y-%m-%d')}}</small>
             <!-- seen when the user is a current user -->
-            {% if post.author == current_user %}
-            <div>
+            <!-- {% if post.author == current_user %} -->
+            <!-- <div>
                
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{url_for('update',post_id=post.id) }}" >Update</a>
                 <!-- modal is a pop up -->
-                <button type="button" data-toggle ="modal" data-target="#deletemodal"  class ="btn btn-danger btn-sm m-1">
+                <!-- <button type="button" data-toggle ="modal" data-target="#deletemodal"  class ="btn btn-danger btn-sm m-1">
                         Delete
                 </button>
-            </div>
-            {% endif %}
-          </div>
+            </div> -->
+            <!-- {% endif %} -->
+          <!-- </div>
           <h2 class="article-title">{{post.title}}</h2>
           <p class="article-content">{{post.content}}</p>
         </div>
-      </article>
+      </article> -->
       <!-- modal here -->
       <!-- Button trigger modal -->
 

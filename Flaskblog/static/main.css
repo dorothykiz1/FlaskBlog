@@ -1,8 +1,25 @@
 body{
-    background: rgb(230, 227, 228);
+    background: snow;
+
 }
 
 /* img{
     width:30px;
     height:20px;
-} */
+/* }  */
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url()
+    /* height: 1000px; */
+    /* color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+    background:transparent; */
+  }
+
+  article{
+      background: rgb(196, 192, 192);
+  }
+
+  img{
+      margin: 10px;
+  }
